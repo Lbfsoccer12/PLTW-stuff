@@ -1,0 +1,50 @@
+import turtle as trtl
+
+# create turtle object
+painter = trtl.Turtle()
+
+
+c = input("Hi. I will be drawing you a stickfigure today. What color would you like it to be?")
+painter.pencolor(c)
+painter.turtlesize(3)
+painter.circle(100)
+painter.right(90)
+painter.forward(100)
+painter.penup()
+painter.goto(50,-150)
+painter.left(180)
+painter.pendown()
+painter.circle(50,180,2)
+painter.penup()
+painter.goto(-50,-50)
+painter.left(90)
+painter.pendown()
+painter.forward(100)
+
+f = input("What color do want the face to be?")
+painter.pencolor(f)
+painter.penup()
+painter.goto(45,100)
+painter.pendown()
+painter.fillcolor(f)
+painter.begin_fill()
+painter.circle(25)
+painter.end_fill()
+painter.penup()
+painter.goto(-45,100)
+painter.pendown()
+painter.fillcolor(f)
+painter.begin_fill()
+painter.circle(25)
+painter.end_fill()
+painter.penup()
+
+painter.goto(-45,50)
+painter.pendown()
+painter.pensize(6)
+painter.forward(100)
+
+print("WOW! YOU MADE AN UGLY STICK FIGURE!!")
+
+wn = trtl.Screen()
+wn.mainloop()
