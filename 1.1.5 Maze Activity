@@ -1,0 +1,69 @@
+# Maze 1
+
+f = 0
+while (f < 34):
+  move()
+  f = f + 1
+
+t = 0
+while (t < 3):
+  turn_left()
+  t = t + 1
+x = 0
+while (x < 4):
+  move()
+  x = x + 1
+
+# Maze 2
+
+f = 0
+while (f < 3):
+  move()
+  f = f + 1
+
+t = 0
+while (t < 3):
+  turn_left()
+  t = t + 1
+x = 0
+while (x < 2):
+  move()
+  x = x + 1
+
+robot.goto(startx, starty)
+g = 0
+while (g <2):
+  move()
+  move()
+  move()
+  g = g + 1
+  h = 0
+  while (h < 1):
+    turn_left()
+    h = h + 1
+move()
+
+# Maze 3
+turn_left()
+turn_left()
+turn_left()
+f = 0
+while (f < 2):
+  x = 0
+  while (x < 2):
+    
+    move()
+    turn_left()
+    move()
+    t = 0
+    while (t < 3):
+      turn_left()
+      t = t + 1
+    x = x + 1
+  robot.pencolor("green")
+  f = f + 1
+
+
+
+
+
