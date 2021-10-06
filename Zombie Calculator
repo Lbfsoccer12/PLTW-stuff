@@ -1,0 +1,11 @@
+zi = input("Welcome to zombie calculator! How many inital zombies were there?")
+zid = input("How many people does a zombie infect everyday?")
+dsf = input("How many days has has it been since first zombie?")
+num1 = int(zi)
+num2 = int(zid)
+num3 = int(dsf)
+d = 0
+while (d < num3):
+    
+
+print("There are", x ,"zombies today.")
