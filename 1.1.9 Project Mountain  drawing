@@ -1,0 +1,16 @@
+import turtle as trtl
+
+# create ladybug head
+i = trtl.Turtle()
+i.speed(1)
+i.forward(50) 
+i.pendown()
+i.right(90)
+i.forward(50)
+
+
+
+
+
+wn = trtl.Screen()
+wn.mainloop()
