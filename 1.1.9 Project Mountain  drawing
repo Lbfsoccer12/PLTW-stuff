@@ -2,11 +2,45 @@ import turtle as trtl
 
 # create ladybug head
 i = trtl.Turtle()
+i.turtlesize(100)
 i.speed(1)
-i.forward(50) 
+i.shape("square")
+i.fillcolor("blue")
+i.stamp()
+#draw mountains
+i.penup()
+i.goto(-300,0)
 i.pendown()
-i.right(90)
-i.forward(50)
+
+i.turtlesize(8)
+i.left(90)
+i.shape("triangle")
+i.fillcolor("white")
+i.pencolor("white")
+i.stamp()
+
+i.goto(-220,10)
+i.turtlesize(14)
+i.stamp()
+i.goto(0,0)
+i.turtlesize(20)
+i.stamp()
+i.goto(25,10)
+i.stamp()
+i.goto(100,0)
+i.turtlesize(12)
+i.left(20)
+i.stamp()
+i.goto(230,-60)
+i.left(20)
+i.stamp()
+i.shape("square")
+i.turtlesize(40)
+i.goto(0,-400)
+i.right(40)
+i.stamp()
+
+
 
 
 
