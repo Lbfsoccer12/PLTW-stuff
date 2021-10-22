@@ -1,6 +1,6 @@
 import turtle as trtl
 
-# create ladybug head
+#create background
 i = trtl.Turtle()
 i.turtlesize(100)
 i.speed(1)
@@ -39,6 +39,72 @@ i.turtlesize(40)
 i.goto(0,-400)
 i.right(40)
 i.stamp()
+#draw sun
+i.shape("circle")
+i.turtlesize(5)
+i.fillcolor("yellow")
+i.penup()
+i.goto(300,300)
+i.stamp()
+i.hideturtle()
+
+x = 0
+i.speed(5)
+a = 360 / 10
+while (x < 10):
+    i.pendown()
+    i.right(a)
+    i.pencolor("yellow")
+    i.pensize(4)
+    i.forward(75)
+    i.penup()
+    i.goto(300,300)
+    x = x + 1
+
+#draw trees
+i.setheading(90)
+
+i.goto(-300,0)
+b = 25
+new_list = [-150,-20,-200,-100,-180,-200,-75,-70,-155,-300,-310,-270]
+
+for number in new_list:
+    
+    i.forward(number)
+    
+    
+
+
+    i.pencolor("brown")
+    i.shape("square")
+    i.fillcolor("brown")
+    i.turtlesize(0.5)
+    i.stamp()
+
+    i.forward(50)
+
+    i.shape("triangle")
+    i.turtlesize(2)
+    i.pencolor("green")
+    i.fillcolor("green")
+    i.stamp()
+    i.backward(15)
+    i.turtlesize(2.2)
+    i.stamp()
+    i.turtlesize(2.4)
+    i.backward(15)
+    i.stamp()
+    
+    i.backward(number)
+    i.right(90)
+    i.forward(50)
+    i.setheading(90)
+
+    
+
+
+
+
 
 
 
