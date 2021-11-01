@@ -1,0 +1,41 @@
+# a121_catch_a_turtle.py
+#-----import statements-----
+import turtle as  trtl
+spot =  trtl.Turtle()
+import random as rand
+
+#-----game configuration----
+spot.shape("circle")
+spot.fillcolor("black")
+spot.pencolor("black")
+spot.shapesize(2)
+score = 0
+
+#-----initialize turtle-----
+
+
+#-----game functions--------
+def change_position(new_xpos, new_ypos):
+    new_xpos = rand.randint(-400, 400) 
+    new_ypos = rand.randint(-300, 300)
+    spot.penup()
+    spot.hideturtle()
+    spot.speed(0)
+    spot.goto(new_xpos,new_ypos)
+    spot.pendown()
+    spot.showturtle()
+
+def update_score():
+    global score
+    score = score + 1
+    print(score)
+
+#-----events----------------
+
+
+spot.onclick(change_position)
+
+spot.onclick(update_score)
+
+wn = trtl.Screen()
+wn.mainloop()
