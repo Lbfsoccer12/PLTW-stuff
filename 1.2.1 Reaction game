@@ -1,0 +1,95 @@
+# a121_catch_a_turtle.py
+#-----import statements-----
+import turtle as  trtl
+spot =  trtl.Turtle()
+import random as rand
+import turtle as score
+score_writer = score.Turtle()
+import turtle as timer
+counter = timer.Turtle()
+
+
+#-----game configuration----
+
+
+font_setup = ("Arial", 20, "normal")
+timer = 5
+counter_interval = 1000   #1000 represents 1 second
+timer_up = False
+
+counter.hideturtle()
+counter.penup()
+counter.goto(100,300)
+
+
+
+score_writer.penup()
+score_writer.hideturtle()
+score_writer.goto(0,300)
+
+
+
+
+spot.shape("circle")
+spot.fillcolor("black")
+spot.pencolor("black")
+spot.shapesize(2)
+
+
+
+score = 0
+
+#-----initialize turtle-----
+
+
+#-----game functions--------
+def spot_clicked(x,y):
+    global timer
+    if timer <= 0:
+        spot.hideturtle()
+    else:
+        change_position()
+        update_score()
+        
+
+
+
+def change_position():
+    new_xpos = rand.randint(-300, 300) 
+    new_ypos = rand.randint(-300, 300)
+    spot.penup()
+    spot.hideturtle()
+    spot.speed(0)
+    spot.goto(new_xpos,new_ypos)
+    spot.pendown()
+    spot.showturtle()
+
+def update_score():
+    global score
+    score = score + 1
+    score_writer.clear()
+    score_writer.write(score, font=font_setup)
+    
+
+def countdown():
+  global timer, timer_up
+  counter.clear()
+  if timer <= 0:
+    counter.write("Time's Up", font=font_setup)
+    timer_up = True
+  else:
+    counter.write("Timer: " + str(timer), font=font_setup)
+    timer -= 1
+    counter.getscreen().ontimer(countdown, counter_interval) 
+
+#-----events----------------
+
+
+spot.onclick(spot_clicked)
+
+
+
+wn = trtl.Screen()
+wn.bgcolor("blue")
+wn.ontimer(countdown, counter_interval) 
+wn.mainloop()
