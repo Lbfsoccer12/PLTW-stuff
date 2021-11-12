@@ -1,0 +1,10 @@
+age = input("Hi how old are you in years?")
+num = int(age)
+x = num * 365
+y = num / 10
+z = num * 52
+a = num * 365 * 24 * 60
+print("You  have been alive for", x ,"days.")
+print("You have been alive for", y ,"decades.")
+print("You have been alive for", z ,"weeks.")
+print( "You have been alive for", a ,"minutes.")
