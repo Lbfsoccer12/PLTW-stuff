@@ -1,0 +1,65 @@
+#   a123_apple_1.py
+import turtle as trtl
+import turtle as writer
+import random as rand
+
+#-----setup-----
+apple_image = "apple.gif" # Store the file name of your shape
+key = ""
+xcor = int()
+ycor = int()
+wn = trtl.Screen()
+wn.setup(width=1.0, height=1.0)
+wn.addshape(apple_image) # Make the screen aware of the new file
+
+apple = trtl.Turtle()
+writer = writer.Turtle()
+writer.hideturtle()
+writer.penup()
+wn.bgpic("background.gif")
+
+#-----functions-----
+# given a turtle, set that turtle to be shaped by the image file
+letters = ["a","s","d","f","g","h","j","k","l"]
+
+
+
+def draw_apple(active_apple):
+  global key
+  active_apple.shape(apple_image)
+  wn.update()
+  global xcor
+  global ycor
+  xcor = rand.randint(-100,100)
+  ycor = rand.randint(-100,100)
+  apple.penup()
+  apple.goto(xcor,ycor)
+  writer.goto(xcor,ycor)
+  key = rand.choice(letters) 
+  writer.write( key,font=("Arial", 30, "bold"))
+  wn.onkeypress(falling_apple, key)
+  wn.listen()
+
+
+def falling_apple():
+  writer.clear()
+  apple.penup()
+  apple.right(90)
+  apple.goto(xcor,ycor - 100)
+  
+  draw_apple(apple)
+
+
+
+#-----function calls-----
+
+
+
+
+draw_apple(apple)
+
+
+
+
+
+wn.mainloop()
