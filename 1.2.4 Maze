@@ -1,0 +1,177 @@
+#set up
+import turtle as trtl
+import random as rand
+
+
+maze = trtl.Turtle()
+wn = trtl.Screen()
+
+
+maze.pensize(5)
+
+
+maze.speed(0)
+#draw maze
+
+maze.penup()
+maze.goto(230,230)
+maze.right(90)
+maze.pendown()
+
+w = 400
+maze.forward(440)
+maze.right(90)
+maze.forward(440)
+maze.right(90)
+maze.forward(440)
+maze.right(90)
+
+
+
+x = 1
+while x < 8:
+    z = rand.randint(0, ((w - (x * 40))-30))
+    b = rand.randint(40, ((w - (x * 40))-40))
+    
+    
+    if ( z < b ) and (b < (z + 30)):
+        print("B =", b)
+        print("Z =", z)
+        while ( z < b ) and (b < (z + 30) ):
+            b = rand.randint(40, ((w - (x * 40))-40))
+            print("new b value,", b)
+        
+        maze.forward(z)
+        maze.penup()
+        maze.forward(30)
+        maze.pendown()
+        maze.forward((w - (x * 40))-z )
+        maze.right(180)
+        maze.penup()
+        maze.forward(z + 30 + ((w - (x * 40) - z)))
+        maze.left(180)
+        maze.forward(b)
+        maze.pendown()
+        maze.right(90)
+        maze.forward(40)
+        maze.right(180)
+        maze.forward(40)
+        maze.right(90)
+        maze.penup()
+        maze.forward((w - (x * 40)) - b + 40)
+        maze.right(90)
+        maze.pendown()
+    else:  
+        print(" b got it right", b)
+        print(" z got it right", z)
+        maze.forward(z)
+        maze.penup()
+        maze.forward(30)
+        maze.pendown()
+        maze.forward((w - (x * 40))-z)
+        maze.right(180)
+        maze.penup()
+        maze.forward(z + 30 + ((w - (x * 40) - z)))
+        maze.left(180)
+        maze.forward(b)
+        maze.pendown()
+        maze.right(90)
+        maze.forward(40)
+        maze.right(180)
+        maze.forward(40)
+        maze.right(90)
+        maze.penup()
+        maze.forward((w - (x * 40)) - b + 40)
+        maze.right(90)
+        maze.pendown()
+        
+        
+        '''maze.forward(z)
+        maze.penup()
+        maze.forward(30)
+        maze.pendown()
+        maze.forward((w - (x * 40))-z)
+        maze.right(180)
+        maze.penup()
+        maze.forward(b)
+        maze.left(90)
+        maze.pendown()
+        maze.forward(40)
+        maze.penup()
+        maze.right(180)
+        maze.forward(40)
+        maze.right(90)
+        maze.forward(b)
+        maze.pendown()
+        maze.right(90)'''
+
+
+    z = rand.randint(0, (w - (x * 40)-30))
+    b = rand.randint(40, (w - (x * 40)-40))
+    
+    
+    if ( z < b ) and (b < (z + 30) ):
+        print("B =", b)
+        print("Z =", z)
+        while ( z < b ) and (b < (z + 30) ):
+            b = rand.randint(40, (w - (x * 40)-40))
+            print("nwe b value,", b)
+        maze.forward(z)
+        maze.penup()
+        maze.forward(30)
+        maze.pendown()
+        maze.forward((w - (x * 40))-z)
+        maze.right(180)
+        maze.penup()
+        maze.forward(z + 30 + ((w - (x * 40) - z)))
+        maze.left(180)
+        maze.forward(b)
+        maze.pendown()
+        maze.right(90)
+        maze.forward(40)
+        maze.right(180)
+        maze.forward(40)
+        maze.right(90)
+        maze.penup()
+        maze.forward((w - (x * 40)) - b + 40)
+        maze.right(90)
+        maze.pendown()
+    
+    else:  
+        print(" b got it right", b)
+        print(" z got it right", z)
+        maze.forward(z)
+        maze.penup()
+        maze.forward(30)
+        maze.pendown()
+        maze.forward((w - (x * 40))-z)
+        maze.right(180)
+        maze.penup()
+        maze.forward(z + 30 + ((w - (x * 40) - z)))
+        maze.left(180)
+        maze.forward(b)
+        maze.pendown()
+        maze.right(90)
+        maze.forward(40)
+        maze.right(180)
+        maze.forward(40)
+        maze.right(90)
+        maze.penup()
+        maze.forward((w - (x * 40)) - b + 40)
+        maze.right(90)
+        maze.pendown()
+
+    
+    x = x + 1
+
+
+maze.forward(120)
+maze.right(90)
+maze.forward(70)
+maze.hideturtle()
+
+
+
+
+
+wn.mainloop()
