@@ -1,0 +1,81 @@
+import turtle
+import random
+wn = turtle.Screen()
+wn.title("Block game")
+wn.setup(width = 800, height = 600)
+wn.tracer()
+
+
+#player
+player = turtle.Turtle()
+player.speed(0)
+player.shape("square")
+player.penup()
+player.goto(0,-250)
+player.direction = "stop"
+
+block_shape = []
+
+#block
+for _ in range(10):
+    block = turtle.Turtle()
+    block.speed(0)
+    block.turtlesize(2)
+    block.shape("square")
+    block.color("blue")
+    block.penup()
+    block.goto(0,250)
+    block.speed =  random.randint(15,25)
+    block_shape.append(block)
+
+
+
+#functions
+def go_left():
+    player.direction = "left"
+
+def go_right():
+    player.direction = "right"
+
+wn.listen()
+wn.onkeypress(go_left, "Left")
+wn.onkeypress(go_right, "Right")
+
+
+#main game loop
+while True:
+    wn.update()
+    if player.direction =="left":
+        x = player.xcor()
+        x-= 10
+        player.setx(x)
+
+    if player.direction =="right":
+        x = player.xcor()
+        x+= 10
+        player.setx(x)
+
+    #move block
+    for block in block_shape:
+        y = block.ycor()
+        y -= block.speed
+        block.sety(y)
+
+
+        if y < -300:
+            x = random.randint(-380,380)
+            y = random.randint(300,400)
+            block.goto(x,y)
+
+        if block.distance(player) < 20:
+            x = random.randint(-380,380)
+            y = random.randint(300,400)
+            block.goto(x,y)
+            
+            print("You lose")
+
+
+
+
+
+wn.mainloop()
