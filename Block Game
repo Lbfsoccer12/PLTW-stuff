@@ -17,17 +17,58 @@ titlewriter.hideturtle()
 titlewriter.penup()
 titlewriter.goto(-120,0)
 titlewriter.write("Tap Enter To Play", font = ("arial", 20, "bold"))
-
-
+titlewriter.goto(-350,-75)
+titlewriter.write("How To Play - Avoid falling blue blocks to stay alive. The longer you stay alive the better score you get.",font = ("arial", 11, "bold"))
+titlewriter.goto(-125,-125)
+titlewriter.write("Use the arow keys to move player",font = ("arial", 11, "bold"))
 #main game loop
 
+
+n = 5
+blocks_changed = 0
+
+def change_blocks():
+    global n
+    global blocks_changed
+    for i in range(n):
+            
+            
+        block = turtle.Turtle()
+        block.hideturtle()
+        block.speed(0)
+        block.turtlesize(3)
+        block.shape("square")
+        block.color("blue")
+        block.penup()
+        x = random.randint(-380,380)
+        block.goto(x,350)
+        block.speed =  random.randint(10,50)
+        block_cat.append(block)
+        block.showturtle()
+    blocks_changed +=1
+
 def go_game():
+    '''Function that starts the game initiating the  variables and game pieces'''
+    global n
+  
+    
     
     titlewriter.clear()
     global game
     game = 1
     wn.bgcolor("white")
     
+
+    #Setup Score
+    global scorewriter
+    scorewriter = turtle.Turtle()
+    scorewriter.hideturtle()
+    scorewriter.penup()
+    scorewriter.goto(-50,250)
+    global score
+    score = 0
+    scorewriter.write("Score:" + str(score), font = ("arial", 20, "bold"))
+
     #player setup
     global player
     player = turtle.Turtle()
@@ -42,23 +83,13 @@ def go_game():
     #block setup
     global block_cat
     block_cat = []
+    global blocks_changed
 
-    for _ in range(5):
-        
-        
-        block = turtle.Turtle()
-        block.hideturtle()
-        block.speed(0)
-        block.turtlesize(3)
-        block.shape("square")
-        block.color("blue")
-        block.penup()
-        x = random.randint(-380,380)
-        block.goto(x,350)
-        block.speed =  random.randint(5,10)
-        block_cat.append(block)
+    
 
-
+ 
+    change_blocks()   
+   
     #functions
 
     def go_left():
@@ -88,7 +119,7 @@ def go_game():
         
         if player.direction =="left":
             x = player.xcor()
-            x-= 5
+            x-= 10
             player.setx(x)
             if x > 400:
                 player.goto(-400,-250)
@@ -97,7 +128,7 @@ def go_game():
                 player.goto(400,-250)
         if player.direction =="right":
             x = player.xcor()
-            x+= 5
+            x+= 10
             player.setx(x)
             if x > 400:
                 player.goto(-400,-250)
@@ -105,6 +136,14 @@ def go_game():
             if x < -400:
                 player.goto(400,250)
         
+
+        #change the score
+
+        def change_score():
+
+            scorewriter.clear()
+            scorewriter.write("Score:" + str(score), font = ("arial", 20, "bold"))
+            
         #move block
         
         for block in block_cat:
@@ -117,6 +156,9 @@ def go_game():
                 x = random.randint(-380,380)
                 y = random.randint(300,400)
                 block.goto(x,y)
+                score = score + 1
+                change_score()
+                
 
             if block.distance(player) < 40:
                 x = random.randint(-380,380)
@@ -126,20 +168,43 @@ def go_game():
                 game = 0
                 print("You lose")
                 finish_screen()
-    
+
+
+
+        if (score == 15) and (blocks_changed==1):
+            n = n + 5
+            change_blocks()
+
+        if (score == 30) and (blocks_changed==2):
+            n = n + 5
+            change_blocks()    
+
+        if (score == 50) and (blocks_changed==3):
+            n = n + 5
+            change_blocks() 
+
+        if (score == 70) and (blocks_changed==4):
+            n = n + 10
+            change_blocks() 
+
+        if (score == 100) and (blocks_changed==5):
+            n = n + 5
+            change_blocks() 
+
 wn.onkeypress(go_game, "Return")
 wn.listen()
 
 
 def finish_screen():
+    scorewriter.clear()
     for block in block_cat:
         block.hideturtle()
 
     player.hideturtle()
     titlewriter.goto(-60,0)
     titlewriter.write("YOU LOSE", font = ("arial", 20, "bold"))
-    
-
+    titlewriter.goto(-75,-75)
+    titlewriter.write("Your score was: " + str(score),font = ("arial", 15, "bold"))
 
 
 
