@@ -1,0 +1,240 @@
+import turtle 
+import random
+blue = turtle.Turtle()
+red = turtle.Turtle()
+wn = turtle.Screen()
+titlewriter = turtle.Turtle()
+counter = turtle.Turtle()
+scorewriter = turtle.Turtle()
+#Player Setup and game set up
+
+red.hideturtle()
+blue.hideturtle()
+counter.hideturtle()
+scorewriter.hideturtle()
+scorewriter.penup()
+
+red.penup()
+red.speed(0)
+red.shape("square")
+red.color("red")
+blue.penup()
+blue.speed(0)
+blue.shape("square")
+blue.color("blue")
+
+
+global bx
+global by
+global rx
+global ry
+global game
+global finish_screen
+
+
+#starting cordinates
+bx = 200
+by = 0
+rx = -200
+ry = 0
+
+
+red.goto(rx,ry)
+blue.goto(bx,by)
+
+red.speed(1)
+blue.speed(1)
+
+
+#Movement commands for the players
+def blue_up():
+                
+    bx = blue.xcor()
+    by = blue.ycor()
+    blue.goto( bx ,by + 15)
+            
+def blue_down():
+    bx = blue.xcor()
+    by = blue.ycor()
+    blue.goto( bx ,by - 15)
+    
+def blue_right():
+            
+    bx = blue.xcor()
+    by = blue.ycor()
+    blue.goto( bx+15, by)
+        
+def blue_left():
+    bx = blue.xcor()
+    by = blue.ycor()
+    blue.goto( bx-15 ,by )
+    
+wn.onkey(blue_up, "i")
+wn.onkey(blue_down, "k")
+wn.onkey(blue_right, "l")
+wn.onkey(blue_left, "j")
+wn.listen()
+    
+
+def red_up():
+            
+    rx = red.xcor()
+    ry = red.ycor()
+    red.goto( rx ,ry + 20)
+        
+def red_down():
+    rx = red.xcor()
+    ry = red.ycor()
+    red.goto( rx ,ry - 20)
+    
+def red_right():
+            
+    rx = red.xcor()
+    ry = red.ycor()
+    red.goto( rx+20, ry)
+        
+def red_left():
+    rx = red.xcor()
+    ry = red.ycor()
+    red.goto( rx-20 ,ry )
+    
+wn.onkey(red_up, "w")
+wn.onkey(red_down, "s")
+wn.onkey(red_right, "d")
+wn.onkey(red_left, "a")
+wn.listen()
+
+
+
+# start screen
+def start_screen():
+    
+    titlewriter.hideturtle()
+    titlewriter.penup()
+    titlewriter.goto(-120,0)
+    titlewriter.write("Tap Enter To Play", font = ("arial", 20, "bold"))
+    titlewriter.goto(-275,-75)
+    titlewriter.write("How To Play - Blue player's goal is to tag the red player by running into them.",font = ("arial", 11, "bold"))
+    titlewriter.goto(-275,-95)
+    titlewriter.write("Red player's goal is to run away from the blue player and survive for the longest time",font = ("arial", 11, "bold"))
+    titlewriter.goto(-380,-180)
+    titlewriter.write("Both players should avoid the black obstacles and the higher the game's score the better blue did in the game.",font = ("arial", 11, "bold"))
+    titlewriter.goto(-150,-125)
+    titlewriter.write("Movement controls are w,a,s,d for the red player.",font = ("arial", 11, "bold"))
+    titlewriter.goto(-150,-140)
+    titlewriter.write("Movement controls are i,j,k,l for the blue player.",font = ("arial", 11, "bold"))
+
+start_screen()
+
+
+#obstacles
+global ob_cat
+global n
+ob_cat = []
+n = 10
+
+
+# Create obstacle blocks
+
+def create_blocks():
+    for i in range(n):
+        ob = turtle.Turtle()
+        ob.hideturtle()
+        ob.speed(0)
+        ob.turtlesize(3)
+        ob.shape("square")
+        ob.color("black")
+        ob.penup()
+        x = random.randint(-320,320)
+        y = random.randint(-320,270)
+        ob.goto(x,y)
+        ob_cat.append(ob)
+
+create_blocks()
+
+
+#Active Game Code
+score = 0
+def go_game():
+    titlewriter.clear()
+    scorewriter.goto(-50,300)
+    scorewriter.write("Score", font = ("arial", 11, "bold"))
+    red.showturtle()
+    blue.showturtle()
+    
+    global score
+   
+    for ob in ob_cat:
+        ob.showturtle()
+
+    #scoreboard setup
+    score = score + 1
+    counter.clear()
+    counter.penup()
+    counter.goto(10,300)
+    counter.write(str(score), font = ("arial", 11, "bold"))
+   
+    # listen to movemoent functions
+    wn.onkey(red_up, "w")
+    wn.onkey(red_down, "s")
+    wn.onkey(red_right, "d")
+    wn.onkey(red_left, "a")
+    wn.listen()
+    
+    wn.onkey(blue_up, "i")
+    wn.onkey(blue_down, "k")
+    wn.onkey(blue_right, "l")
+    wn.onkey(blue_left, "j")
+    wn.listen()
+    rx = red.xcor()
+    ry = red.ycor()
+    bx = blue.xcor()
+    by = blue.ycor()
+
+    # Check to see if there is contact with obstacle 
+    for ob in ob_cat:
+        if red.distance(ob) < 50:
+            print("ob")
+            finish_screenb()
+            return
+        if blue.distance(ob) < 50:
+            print("ob")
+            finish_screenr()
+            return
+    
+            
+    #Check to see if there is contact between players
+    if red.distance(blue) < 20:
+        print("hit")
+        finish_screenr()
+    
+    else:
+        go_game()
+        counter.clear()
+
+
+wn.onkeypress(go_game, "Return")
+wn.listen()
+
+#Finish screens
+def finish_screenr():
+    for ob in ob_cat:
+        ob.hideturtle()
+    counter.clear()
+    scorewriter.clear()
+    red.hideturtle()
+    blue.hideturtle()
+    titlewriter.goto(-300,0)
+    titlewriter.write("RED WINS!! Your game's score:" + str(score), font = ("arial", 25, "bold"))
+
+def finish_screenb():
+    for ob in ob_cat:
+        ob.hideturtle()
+    counter.clear()
+    scorewriter.clear()
+    red.hideturtle()
+    blue.hideturtle()
+    titlewriter.goto(-300,0)
+    titlewriter.write("BLUE WINS!! Your game's score:" + str(score), font = ("arial", 25, "bold"))
+
+wn.mainloop()
