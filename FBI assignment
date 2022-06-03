@@ -1,0 +1,47 @@
+import matplotlib.pyplot as plt
+
+# open FBI_crimes.txt
+
+violentCrimesFile = open ("FBI_crimes.txt")
+
+crimeList = violentCrimesFile.readlines()
+
+print(crimeList)
+
+for i in range(len(crimeList)):
+    crimeList[i]=int(crimeList[i])
+
+print(crimeList)    
+fig, ax1 = plt.subplots()
+
+data = input ("what years of data would you like to see? A; 2000-2005, B; 2005-2010, C; 2010-2015, D; 2015-2020, or E; 2000-2020?")
+if data == "A":
+    plt.plot(range(2000,2005),crimeList,'bo')
+    plt.axis([2000,2005,1000000,2000000])
+    ax1.set_xlabel("years")
+    ax1.set_ylabel("violent crimes(in 100,000s)")
+    plt.show()
+elif data == "B":
+    plt.plot(range(2005,2010),crimeList,'bo')
+    plt.axis([2005,2010,1000000,2000000])
+    ax1.set_xlabel("years")
+    ax1.set_ylabel("violent crimes(in 100,000s)")
+    plt.show()
+elif data == "C":
+    plt.plot(range(2010,2015),crimeList,'bo')
+    plt.axis([2010,2015,1000000,2000000])
+    ax1.set_xlabel("years")
+    ax1.set_ylabel("violent crimes(in 100,000s)")
+    plt.show()
+elif data == "D":
+    plt.plot(range(2015,2020),crimeList,'bo')
+    plt.axis([2010,2025,1000000,2000000])
+    ax1.set_xlabel("years")
+    ax1.set_ylabel("violent crimes(in 100,000s)")
+    plt.show()            
+elif data == "E":
+    plt.plot(range(2000,2020),crimeList,'bo')
+    plt.axis([1995,2020,1000000,2000000])
+    ax1.set_xlabel("years")
+    ax1.set_ylabel("violent crimes(in 100,000s)")
+    plt.show()
